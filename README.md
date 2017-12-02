@@ -13,3 +13,10 @@ przyjmuje on dwa elementy w body zapytania: email i pass, zwraca status, name, i
 #### New Game
 wysyłamy zapytanie typu POST na serwer bazy danych na endpoint "/newGame"
 przyjmuje on dwa elementy w body zapytania: name, zwraca status i wiadomość
+
+
+#### Get all games
+
+#### Update saldo
+
+#### Update moves

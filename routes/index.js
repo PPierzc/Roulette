@@ -42,6 +42,8 @@ exports = module.exports = function (app) {
 	
 	app.post('/newgame', routes.view.newgame); // Creat a new game
 	
+	app.port('/update/moves', routes.views.updateMoves);
+	
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
