@@ -11,6 +11,7 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
+	profile: { type: Types.Relationship, ref: 'Profile' },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
 });
@@ -20,6 +21,12 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;
 });
 
+User.schema.pre('save', function (next) {
+	const Profile = keystone.list('Profile');
+	var newProfile = new Profile.model({});
+	this.profile = newProfile._id;
+	next();
+});
 
 /**
  * Registration
