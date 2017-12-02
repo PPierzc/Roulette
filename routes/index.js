@@ -40,6 +40,8 @@ exports = module.exports = function (app) {
 	
 	app.post('/join', routes.views.join); // A user enters a game
 	
+	app.post('/newgame', routes.view.newgame); // Creat a new game
+	
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

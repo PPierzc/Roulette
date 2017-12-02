@@ -24,8 +24,15 @@ User.schema.virtual('canAccessKeystone').get(function () {
 User.schema.pre('save', function (next) {
 	const Profile = keystone.list('Profile');
 	var newProfile = new Profile.model({});
-	this.profile = newProfile._id;
-	next();
+	newProfile.save(function (err) {
+		if (err) {
+			next(err);
+		} else {
+			this.profile = newProfile._id;
+			next();
+		}
+	});
+
 });
 
 /**

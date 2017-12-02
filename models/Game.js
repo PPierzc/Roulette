@@ -8,7 +8,7 @@ var Types = keystone.Field.Types;
 var Game = new keystone.List('Game');
 
 Game.add({
-	players: { type: Types.Relationship, ref: 'Profile', many: true },
+	name: { type: String, default: 'New Game' },
 })
 
 
