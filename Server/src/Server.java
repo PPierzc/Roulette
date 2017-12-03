@@ -25,23 +25,59 @@ class RootHandler implements HttpHandler {
 
     public void handle(HttpExchange he) throws IOException {
         File fileHTML = new File(RootHandler.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"/test.html");
-        byte[] b = new byte[(int) fileHTML.length()];
+        File fileJS = new File(RootHandler.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"/js.js");
+
+        byte[] byteHTML = new byte[(int) fileHTML.length()];
+        byte[] byteJS = new byte[(int) fileJS.length()];
+
 
 
         try {
-            FileInputStream fileInputStream = new FileInputStream(fileHTML);
-            fileInputStream.read(b);
-            for (int i = 0; i < b.length; i++) {
-                System.out.print((char)b[i]);
-            }
+            FileInputStream fileInputStreamHTML = new FileInputStream(fileHTML);
+            fileInputStreamHTML.read(byteHTML);
+
+            FileInputStream fileInputStreamJS = new FileInputStream(fileJS);
+            fileInputStreamJS.read(byteJS);
+
+            //wyswietlanie wczytanych danych
+            for (int i = 0; i < byteHTML.length; i++)
+                System.out.print((char)byteHTML[i]);
+            for(int i = 0; i < byteJS.length ; ++i)
+                System.out.print((char)byteJS[i]);
+
         } catch (FileNotFoundException e) {
             System.out.println("File Not Found.");
             e.printStackTrace();
         }
-        he.sendResponseHeaders(200, fileHTML.length());
+        //laczenie wszystkiego w jedna tabliece byte[]
+        byte[] startScript = "\n<script>\n".getBytes();
+        byte[] koniecScript = "\n</script>\n".getBytes();
+        byte[] byteHtmlJs = new byte[byteHTML.length+startScript.length+byteJS.length+koniecScript.length];
+        System.out.println("\n\nTEST\n\n");
+        for(int i=0 ; i<byteHtmlJs.length ; ++i){
+            if(i<byteHTML.length) {
+                byteHtmlJs[i] = byteHTML[i];
+                System.out.print((char)byteHtmlJs[i]);
+            }
+
+            else if(i<byteHTML.length+startScript.length){
+                byteHtmlJs[i] = startScript[i-byteHTML.length];
+                System.out.print((char)byteHtmlJs[i]);
+            }
+            else if(i<byteHTML.length+startScript.length+byteJS.length){
+                byteHtmlJs[i] = byteJS[i-byteHTML.length-startScript.length];
+                System.out.print((char)byteHtmlJs[i]);
+            }
+            else if(i<byteHTML.length+startScript.length+byteJS.length+byteJS.length){
+                byteHtmlJs[i] = koniecScript[i-byteHTML.length-startScript.length-byteJS.length];
+                System.out.print((char)byteHtmlJs[i]);
+            }
+
+        }
+        he.sendResponseHeaders(200, fileHTML.length() + startScript.length + fileJS.length() + koniecScript.length);
         OutputStream os = he.getResponseBody();
 
-        os.write(b);
+        os.write(byteHtmlJs);
         os.close();
     }
 }
