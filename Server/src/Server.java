@@ -1,5 +1,4 @@
 import com.sun.net.httpserver.*;
-
 import java.io.*;
 import java.net.InetSocketAddress;
 
@@ -25,10 +24,12 @@ class RootHandler implements HttpHandler {
     @Override
 
     public void handle(HttpExchange he) throws IOException {
-        File file = new File(RootHandler.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"/test.html");
-        byte[] b = new byte[(int) file.length()];
+        File fileHTML = new File(RootHandler.class.getProtectionDomain().getCodeSource().getLocation().getPath()+"/test.html");
+        byte[] b = new byte[(int) fileHTML.length()];
+
+
         try {
-            FileInputStream fileInputStream = new FileInputStream(file);
+            FileInputStream fileInputStream = new FileInputStream(fileHTML);
             fileInputStream.read(b);
             for (int i = 0; i < b.length; i++) {
                 System.out.print((char)b[i]);
@@ -37,7 +38,7 @@ class RootHandler implements HttpHandler {
             System.out.println("File Not Found.");
             e.printStackTrace();
         }
-        he.sendResponseHeaders(200, file.length());
+        he.sendResponseHeaders(200, fileHTML.length());
         OutputStream os = he.getResponseBody();
 
         os.write(b);
