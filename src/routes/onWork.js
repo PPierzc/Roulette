@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import {
     Link
 } from 'react-router-dom';
 
-class Index extends Component {
+class OnWork extends Component {
     render() {
 
         const style = {
@@ -45,14 +46,10 @@ class Index extends Component {
 
         return (
             <DefaultPage>
-                <Head> KASYNO </Head>
+                <Head> STRONA W TRAKCIE BUDOWY... </Head>
                 <Content>
                     <Div>
-                        //TODO: Dodać opis gry
-                        <p>Informacje o grze dla użytkownika</p>
-                    </Div>
-                    <Div>
-                        <RaisedButton label="Rozpocznij" href="/login" style={style}/>
+                        <RaisedButton label="Wróć do lobby" href="/lobby" style={style}/>
                     </Div>
                 </Content>
             </DefaultPage>
@@ -60,5 +57,5 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default OnWork;
 

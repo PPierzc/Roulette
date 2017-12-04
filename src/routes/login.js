@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import {
     Link
 } from 'react-router-dom';
 
-class Index extends Component {
+class Login extends Component {
     render() {
 
         const style = {
@@ -45,14 +46,20 @@ class Index extends Component {
 
         return (
             <DefaultPage>
-                <Head> KASYNO </Head>
+                <Head> LOGOWANIE </Head>
                 <Content>
+                    //TODO: Stworzyć system logowania
                     <Div>
-                        //TODO: Dodać opis gry
-                        <p>Informacje o grze dla użytkownika</p>
-                    </Div>
-                    <Div>
-                        <RaisedButton label="Rozpocznij" href="/login" style={style}/>
+                        <TextField
+                            hintText="Wpisz swóją nazwę..."
+                            floatingLabelText="Nazwa użytkownika"
+                        /><br />
+                        <TextField
+                            hintText="Wpisz swoje hasło..."
+                            floatingLabelText="Hasło"
+                            type="password"
+                        /><br />
+                        <RaisedButton label="Rozpocznij" href="/lobby" style={style}/>
                     </Div>
                 </Content>
             </DefaultPage>
@@ -60,5 +67,5 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Login;
 

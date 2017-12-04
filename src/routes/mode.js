@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 import {
     Link
 } from 'react-router-dom';
 
-class Index extends Component {
+class Mode extends Component {
     render() {
 
         const style = {
@@ -45,14 +46,14 @@ class Index extends Component {
 
         return (
             <DefaultPage>
-                <Head> KASYNO </Head>
+                <Head> TRYB GRY </Head>
                 <Content>
                     <Div>
-                        //TODO: Dodać opis gry
-                        <p>Informacje o grze dla użytkownika</p>
-                    </Div>
-                    <Div>
-                        <RaisedButton label="Rozpocznij" href="/login" style={style}/>
+                        <p>Saldo: </p>
+                        <RaisedButton label="Bieda(min. 1k / max. 50k)" href="/bieda" style={style}/>
+                        <RaisedButton label="Gitara Siema(min. 10k / max. 500k)" href="/" style={style}/>
+                        <RaisedButton label="Lecimy Tutaj(min. 50k / max. 2,5m)" href="/" style={style}/>
+                        <RaisedButton label="Grubo albo Wcale(min. 250k / max. 12,5M)" href="/" style={style}/>
                     </Div>
                 </Content>
             </DefaultPage>
@@ -60,5 +61,5 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Mode;
 

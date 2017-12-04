@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+
 
 import {
     Link
 } from 'react-router-dom';
 
-class Index extends Component {
+class Lobby extends Component {
     render() {
 
         const style = {
@@ -45,14 +47,18 @@ class Index extends Component {
 
         return (
             <DefaultPage>
-                <Head> KASYNO </Head>
+                <Head> LOBBY </Head>
                 <Content>
                     <Div>
-                        //TODO: Dodać opis gry
-                        <p>Informacje o grze dla użytkownika</p>
+                        //TODO: Utworzyć saldo użytownika
+                        //TODO: Utworzyć system losowania premii
+                        <p>Saldo: </p>
+                        <p>Premia 2k-10k</p>
                     </Div>
                     <Div>
-                        <RaisedButton label="Rozpocznij" href="/login" style={style}/>
+                        <RaisedButton label="Ruletka" href="/tryb" style={style}/>
+                        <RaisedButton label="Wyścigi konne" href="/onWork" style={style}/>
+                        <RaisedButton label="Maszyna" href="/onWork" style={style}/>
                     </Div>
                 </Content>
             </DefaultPage>
@@ -60,5 +66,5 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default Lobby;
 
