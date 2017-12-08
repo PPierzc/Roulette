@@ -20,13 +20,29 @@ class Bieda extends Component {
         open: false,
     };
 
-    handleOpen = () => {
+    handleOpen = (ID) => {
         this.setState({open: true});
     };
 
     handleClose = () => {
         this.setState({open: false});
     };
+
+    color (ID) {
+        var color
+        return "#F44336"
+    }
+
+    buttons() {
+        var buttons = []
+        for(var i = 1; i < 37; ++i){
+            buttons.push(<RaisedButton label={i} labelColor="white"  onClick={this.handleOpen(i)} backgroundColor={color(i)}/>)
+
+        }
+        return buttons
+
+
+    }
 
     render() {
 
@@ -136,6 +152,7 @@ class Bieda extends Component {
         return (
             <DefaultPage>
                 <Head> BIEDA </Head>
+                <h3>Saldo: </h3>
                 <Content>
                     <Div>
                     <RaisedButton label="0" labelColor="white" onClick={this.handleOpen} backgroundColor="#8BC34A" style={style} />
